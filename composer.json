@@ -27,7 +27,7 @@
         "symfony/validator": "4.2.*",
         "symfony/web-link": "4.2.*",
         "symfony/yaml": "4.2.*",
-        "willdurand/hateoas": "^3.0"
+        "willdurand/hateoas-bundle": "^2.0"
     },
     "require-dev": {
         "symfony/debug-pack": "*",
