@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Phone;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 
 /**
  * @method Phone|null find($id, $lockMode = null, $lockVersion = null)
@@ -47,4 +48,17 @@ class PhoneRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    public function getPagination($page, $limit)
+    {
+        $qb = $this->createQueryBuilder('p')
+            ->select('p')
+            ->setFirstResult($page * $limit)
+            ->setMaxResults($limit)
+            ->orderBy('p.id', 'ASC');
+
+        $paginator = new Paginator($qb);
+
+        return $paginator;
+    }
 }
