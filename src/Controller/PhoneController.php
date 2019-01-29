@@ -42,4 +42,17 @@ class PhoneController extends AbstractController
 
         return $phones_list;
     }
+
+    /**
+     * @Rest\View(statusCode = 200)
+     * @Rest\Get(
+     *     path = "/api/phones/{id}",
+     *     name = "phone_details",
+     *     requirements = {"id"="\d+"})
+     * @Cache(expires="+30 minutes", public=true)
+     */
+    public function details(Phone $phone)
+    {
+        return $phone;
+    }
 }
