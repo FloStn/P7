@@ -75,7 +75,7 @@ class UserController extends AbstractController
      * @Rest\View(statusCode = 200)
      * @Rest\Get(
      *     path = "/api/users",
-     *     name = "users_list")
+     *     name = "user_list")
      * @QueryParam(name="page", requirements="\d+", default="1", description="Page souhaitée")
      * @QueryParam(name="limit", requirements="\d+", default="5", description="Index de fin de la pagination")
      * @Cache(expires="+30 minutes", public=true)
