@@ -27,7 +27,7 @@ class UserController extends AbstractController
     /**
      * @Rest\View(statusCode = 201)
      * @Rest\Post(
-     *     path = "/api/users/register",
+     *     path = "/api/users",
      *     name = "user_register")
      * @ParamConverter("user", converter="fos_rest.request_body")
      * @Cache(expires="+30 minutes", public=true)
