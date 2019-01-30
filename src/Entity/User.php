@@ -39,6 +39,14 @@ use Hateoas\Configuration\Annotation as Hateoas;
  *         absolute = true
  *     )
  * )
+ * @Hateoas\Relation(
+ *     "details",
+ *     href = @Hateoas\Route(
+ *         "user_details",
+ *         parameters = { "id" = "expr(object.getId())" },
+ *         absolute = true
+ *     )
+ * )
  */
 class User implements UserInterface
 {

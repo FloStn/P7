@@ -13,7 +13,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
-use Symfony\Component\HttpFoundation\Response;
 
 class UserController extends AbstractController
 {
@@ -94,5 +93,26 @@ class UserController extends AbstractController
         }
 
         return $users_list;
+    }
+
+    /**
+     * @Rest\View(statusCode = 200)
+     * @Rest\Get(
+     *     path = "/api/users/{id}",
+     *     name = "user_details",
+     *     requirements = {"id"="\d+"})
+     * @Cache(expires="+30 minutes", public=true)
+     */
+    public function details(User $user)
+    {
+        $client = $this->getUser()->getClient();
+        if ($user->getClient() === $client)
+        {
+            return $user;
+        }
+        else
+        {
+            return "Cet utilisateur n'est pas associé à votre compte.";
+        }
     }
 }
