@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 
 /**
  * @method User|null find($id, $lockMode = null, $lockVersion = null)
@@ -47,4 +48,18 @@ class UserRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    public function getPagination($client, $page, $limit)
+    {
+        $qb = $this->createQueryBuilder('u')
+            ->andWhere('u.client = :client')
+            ->setParameter('client', $client)
+            ->setFirstResult($page * $limit)
+            ->setMaxResults($limit)
+            ->orderBy('u.id', 'ASC');
+
+        $paginator = new Paginator($qb);
+
+        return $paginator;
+    }
 }

@@ -18,10 +18,12 @@ use Symfony\Component\HttpFoundation\Response;
 class UserController extends AbstractController
 {
     private $em;
+    private $repository;
 
-    public function __construct(EntityManagerInterface $em)
+    public function __construct(EntityManagerInterface $em, UserRepository $repository)
     {
         $this->em = $em;
+        $this->repository = $repository;
     }
 
     /**
@@ -67,5 +69,30 @@ class UserController extends AbstractController
     {
         $this->em->remove($user);
         $this->em->flush();
+    }
+
+    /**
+     * @Rest\View(statusCode = 200)
+     * @Rest\Get(
+     *     path = "/api/users",
+     *     name = "user_list")
+     * @QueryParam(name="page", requirements="\d+", default="1", description="Page souhaitée")
+     * @QueryParam(name="limit", requirements="\d+", default="5", description="Index de fin de la pagination")
+     * @Cache(expires="+30 minutes", public=true)
+     */
+    public function list(ParamFetcher $paramFetcher)
+    {
+        $page = $paramFetcher->get('page');
+        $limit = $paramFetcher->get('limit');
+        $users_list = array();
+        $client = $this->getUser();
+        $query = $this->repository->getPagination($client, $page, $limit);
+
+        foreach($query as $row)
+        {
+            array_push($users_list, $row);
+        }
+
+        return $users_list;
     }
 }

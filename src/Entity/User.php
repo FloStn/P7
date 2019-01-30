@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Hateoas\Configuration\Annotation as Hateoas;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
@@ -15,6 +16,28 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * @UniqueEntity(
  *     fields="email", 
  *     message="Email déjà utilisé.", 
+ * )
+ * @Hateoas\Relation(
+ *     "self",
+ *     href = @Hateoas\Route(
+ *         "user_list",
+ *         absolute = true
+ *     )
+ * )
+ * @Hateoas\Relation(
+ *     "remove",
+ *     href = @Hateoas\Route(
+ *         "user_remove",
+ *         parameters = { "id" = "expr(object.getId())" },
+ *         absolute = true
+ *     )
+ * )
+ * @Hateoas\Relation(
+ *     "register",
+ *     href = @Hateoas\Route(
+ *         "user_register",
+ *         absolute = true
+ *     )
  * )
  */
 class User implements UserInterface
