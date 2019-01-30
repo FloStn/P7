@@ -52,7 +52,6 @@ class UserController extends AbstractController
         $passwordEncoder = $encoder->encodePassword($user, $user->getPassword());
         $user->setPassword($passwordEncoder);
         $user->setRoles(['ROLE_USER']);
-        $this->getUser()->setRoles(['ROLE_CLIENT']);
         
         $this->em->persist($user);
         $this->em->flush();
