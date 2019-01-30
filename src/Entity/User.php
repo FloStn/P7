@@ -4,9 +4,18 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
+ * @UniqueEntity(
+ *     fields="username", 
+ *     message="Nom d'utilisateur indisponible.", 
+ * )
+ * @UniqueEntity(
+ *     fields="email", 
+ *     message="Email déjà utilisé.", 
+ * )
  */
 class User implements UserInterface
 {
@@ -37,6 +46,13 @@ class User implements UserInterface
      * @ORM\JoinColumn(nullable=false)
      */
     private $client;
+
+    /**
+     * @ORM\Column(type="array")
+     */
+    private $roles = [];
+
+    private $salt;
 
     public function getId(): ?int
     {
@@ -91,14 +107,28 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getSalt()
+    public function getRoles(): ?array
     {
-        return null;
+        return $this->roles;
     }
 
-    public function getRoles()
+    public function setRoles(array $roles): self
     {
-        return array('ROLE_USER');
+        $this->roles = $roles;
+
+        return $this;
+    }
+
+    public function getSalt(): ?string
+    {
+        return $this->salt;
+    }
+
+    public function setSalt(string $salt): self
+    {
+        $this->salt = $salt;
+
+        return $this;
     }
 
     public function eraseCredentials()
