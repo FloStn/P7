@@ -56,4 +56,16 @@ class UserController extends AbstractController
         $this->em->persist($user);
         $this->em->flush();
     }
+
+    /**
+     * @Rest\View(statusCode = 200)
+     * @Rest\Delete(
+     *     path = "/api/users/{id}",
+     *     name = "user_remove")
+     */
+    public function remove(User $user)
+    {
+        $this->em->remove($user);
+        $this->em->flush();
+    }
 }
