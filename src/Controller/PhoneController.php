@@ -9,6 +9,7 @@ use FOS\RestBundle\Controller\Annotations as Rest;
 use FOS\RestBundle\Controller\Annotations\QueryParam;
 use FOS\RestBundle\Request\ParamFetcher;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
+use App\Exception\ResourceDoesNotExistException;
 
 class PhoneController extends AbstractController
 {
@@ -53,6 +54,12 @@ class PhoneController extends AbstractController
      */
     public function details(Phone $phone)
     {
+        if ($phone === null)
+        {
+            $message = "Ce téléphone n'existe pas.";
+            throw new ResourceDoesNotExistException($message);
+        }
+
         return $phone;
     }
 }

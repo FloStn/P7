@@ -12,7 +12,9 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
-use Symfony\Component\Validator\Validator\ValidatorInterface;
+use App\Exception\ResourceValidationException;
+use App\Exception\ResourceNoAssociatedException;
+use Symfony\Component\Validator\ConstraintViolationList;
 
 class UserController extends AbstractController
 {
@@ -33,20 +35,15 @@ class UserController extends AbstractController
      * @ParamConverter("user", converter="fos_rest.request_body")
      * @Cache(expires="+30 minutes", public=true)
      */
-    public function register(User $user, UserPasswordEncoderInterface $encoder, ValidatorInterface $validator)
+    public function register(User $user, UserPasswordEncoderInterface $encoder, ConstraintViolationList $violations)
     {
-        $errors = $validator->validate($user);
-
-        if (count($errors) > 0) {
-            $list_errors = array();
-        
-            foreach($errors as $error)
+        if (count($violations))
+        {
+            foreach ($violations as $violation)
             {
-                $errorString = (string) $error;
-                array_push($list_errors, $errorString);
+                $message = sprintf("%s", $violation->getMessage());
             }
-        
-            return $list_errors;
+            throw new ResourceValidationException($message);
         }
 
         $user->setClient($this->getUser()->getClient());
@@ -66,6 +63,12 @@ class UserController extends AbstractController
      */
     public function remove(User $user)
     {
+        if ($this->getUser()->getClient() != $user->getClient())
+        {
+            $message = "L'utilisateur renseigné n'est pas associé à votre compte.";
+            throw new ResourceNoAssociatedException($message);
+        }
+
         $this->em->remove($user);
         $this->em->flush();
     }
@@ -105,14 +108,12 @@ class UserController extends AbstractController
      */
     public function details(User $user)
     {
-        $client = $this->getUser()->getClient();
-        if ($user->getClient() === $client)
+        if ($user === null || $this->getUser()->getClient() != $user->getClient())
         {
-            return $user;
+            $message = "L'utilisateur renseigné n'existe pas ou n'est pas associé à votre compte.";
+            throw new ResourceNoAssociatedException($message);
         }
-        else
-        {
-            return "Cet utilisateur n'est pas associé à votre compte.";
-        }
+        
+        return $user;
     }
 }
