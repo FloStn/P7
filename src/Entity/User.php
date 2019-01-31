@@ -11,11 +11,11 @@ use Hateoas\Configuration\Annotation as Hateoas;
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  * @UniqueEntity(
  *     fields="username", 
- *     message="Nom d'utilisateur indisponible.", 
+ *     message="Le nom d'utilisateur renseigné est indisponible.", 
  * )
  * @UniqueEntity(
  *     fields="email", 
- *     message="Email déjà utilisé.", 
+ *     message="L'email renseigné est indisponible.", 
  * )
  * @Hateoas\Relation(
  *     "self",
