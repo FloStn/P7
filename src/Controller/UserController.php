@@ -15,6 +15,9 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use App\Exception\ResourceValidationException;
 use App\Exception\ResourceNoAssociatedException;
 use Symfony\Component\Validator\ConstraintViolationList;
+use Symfony\Component\HttpFoundation\Request;
+use JMS\Serializer\SerializerInterface;
+use Symfony\Component\HttpFoundation\Response;
 
 class UserController extends AbstractController
 {
@@ -33,7 +36,6 @@ class UserController extends AbstractController
      *     path = "/api/users",
      *     name = "user_register")
      * @ParamConverter("user", converter="fos_rest.request_body")
-     * @Cache(expires="+30 minutes", public=true)
      */
     public function register(User $user, UserPasswordEncoderInterface $encoder, ConstraintViolationList $violations)
     {
@@ -74,15 +76,13 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Rest\View(statusCode = 200)
      * @Rest\Get(
      *     path = "/api/users",
      *     name = "user_list")
      * @QueryParam(name="page", requirements="\d+", default="1", description="Page souhaitée")
      * @QueryParam(name="limit", requirements="\d+", default="5", description="Index de fin de la pagination")
-     * @Cache(expires="+30 minutes", public=true)
      */
-    public function list(ParamFetcher $paramFetcher)
+    public function list(Request $request, ParamFetcher $paramFetcher, SerializerInterface $serializer)
     {
         $page = $paramFetcher->get('page');
         $limit = $paramFetcher->get('limit');
@@ -95,7 +95,13 @@ class UserController extends AbstractController
             array_push($users_list, $row);
         }
 
-        return $users_list;
+        $response = new Response();
+        $response->setContent($serializer->serialize($users_list, 'json'));
+        $response->setEtag(md5($response->getContent()));
+        $response->setPublic();
+        $response->isNotModified($request);
+
+        return $response;
     }
 
     /**
@@ -104,7 +110,7 @@ class UserController extends AbstractController
      *     path = "/api/users/{id}",
      *     name = "user_details",
      *     requirements = {"id"="\d+"})
-     * @Cache(expires="+30 minutes", public=true)
+     * @Cache(Etag="user.getUsername() ~ user.getEmail() ~ user.getPassword()", public=true)
      */
     public function details(User $user)
     {

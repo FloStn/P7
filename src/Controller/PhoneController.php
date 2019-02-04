@@ -10,6 +10,9 @@ use FOS\RestBundle\Controller\Annotations\QueryParam;
 use FOS\RestBundle\Request\ParamFetcher;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
 use App\Exception\ResourceDoesNotExistException;
+use Symfony\Component\HttpFoundation\Request;
+use JMS\Serializer\SerializerInterface;
+use Symfony\Component\HttpFoundation\Response;
 
 class PhoneController extends AbstractController
 {
@@ -27,9 +30,8 @@ class PhoneController extends AbstractController
      *     name = "phones_catalog")
      * @QueryParam(name="page", requirements="\d+", default="1", description="Page souhaitée")
      * @QueryParam(name="limit", requirements="\d+", default="5", description="Index de fin de la pagination")
-     * @Cache(expires="+30 minutes", public=true)
      */
-    public function catalog(ParamFetcher $paramFetcher)
+    public function catalog(Request $request, ParamFetcher $paramFetcher, SerializerInterface $serializer)
     {
         $page = $paramFetcher->get('page');
         $limit = $paramFetcher->get('limit');
@@ -41,7 +43,13 @@ class PhoneController extends AbstractController
             array_push($phones_list, $row);
         }
 
-        return $phones_list;
+        $response = new Response();
+        $response->setContent($serializer->serialize($phones_list, 'json'));
+        $response->setEtag(md5($response->getContent()));
+        $response->setPublic();
+        $response->isNotModified($request);
+
+        return $response;
     }
 
     /**
@@ -50,7 +58,7 @@ class PhoneController extends AbstractController
      *     path = "/api/phones/{id}",
      *     name = "phone_details",
      *     requirements = {"id"="\d+"})
-     * @Cache(expires="+30 minutes", public=true)
+     * @Cache(Etag="phone.getType() ~ phone.getFormat() ~ phone.getIntegratedComponents() ~ phone.getWidth() ~ phone.getDepth() ~ phone.getHeight() ~ phone.getWeight() ~ phone.getCaseColor() ~ phone.getCaseMaterial() ~ phone.getMobileBroadbandGeneration() ~ phone.getOperatingSystem() ~ phone.getSimCardType() ~ phone.getClockFrequency() ~ phone.getProcessorCoreQty() ~ phone.getArchitecture() ~ phone.getRam() ~ phone.getInternalMemoryCapacity() ~ phone.getUserMemory() ~ phone.getFrontCameraResolution() ~ phone.getBackCameraResolution() ~ phone.getBatteryTechnologie() ~ phone.getBrand() ~ phone.getPrice()", public=true)
      */
     public function details(Phone $phone)
     {
