@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Hateoas\Configuration\Annotation as Hateoas;
+use JMS\Serializer\Annotation as Serializer;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
@@ -59,34 +60,39 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=45)
+     * @Serializer\Expose
+     * @Serializer\Since("1.0")
      */
     private $username;
 
     /**
      * @ORM\Column(type="string", length=45)
+     * @Serializer\Expose
+     * @Serializer\Since("1.0")
      */
     private $email;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Serializer\Expose
+     * @Serializer\Since("1.0")
      */
     private $password;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Client", inversedBy="users")
      * @ORM\JoinColumn(nullable=false)
+     * @Serializer\Expose
+     * @Serializer\Since("1.0")
      */
     private $client;
 
     /**
      * @ORM\Column(type="array")
+     * @Serializer\Expose
+     * @Serializer\Since("1.0")
      */
     private $roles = [];
-
-    /**
-     * @ORM\Column(type="datetime")
-     */
-    private $updatedAt;
 
     private $salt;
 
@@ -151,18 +157,6 @@ class User implements UserInterface
     public function setRoles(array $roles): self
     {
         $this->roles = $roles;
-
-        return $this;
-    }
-
-    public function getUpdatedAt(): ?\DateTimeInterface
-    {
-        return $this->updatedAt;
-    }
-
-    public function setUpdatedAt(\DateTimeInterface $updatedAt): self
-    {
-        $this->updatedAt = $updatedAt;
 
         return $this;
     }

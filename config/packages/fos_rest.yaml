@@ -12,6 +12,8 @@ fos_rest:
     view:
         formats: { json: true, xml: false, rss: false }
         view_response_listener: true
+        mime_types:
+            json: ['application/json', 'application/json;version=1.0']
     serializer:
         serialize_null: true
     format_listener:
@@ -29,3 +31,9 @@ fos_rest:
             App\Exception\ResourceValidationException: true
             App\Exception\ResourceNoAssociatedException: true
             App\Exception\ResourceDoesNotExistException: true
+    versioning:
+        enabled: true
+        resolvers:
+            media_type:
+                enabled: true
+                regex: '/(v|version)=(?P<version>[0-9\.]+)/'
