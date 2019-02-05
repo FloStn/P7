@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation as Serializer;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ClientRepository")
@@ -20,36 +21,50 @@ class Client
 
     /**
      * @ORM\Column(type="string", length=45)
+     * @Serializer\Expose
+     * @Serializer\Since("1.0")
      */
     private $firstname;
 
     /**
      * @ORM\Column(type="string", length=45)
+     * @Serializer\Expose
+     * @Serializer\Since("1.0")
      */
     private $lastname;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Serializer\Expose
+     * @Serializer\Since("1.0")
      */
     private $address;
 
     /**
      * @ORM\Column(type="string", length=45)
+     * @Serializer\Expose
+     * @Serializer\Since("1.0")
      */
     private $city;
 
     /**
      * @ORM\Column(type="string", length=5)
+     * @Serializer\Expose
+     * @Serializer\Since("1.0")
      */
     private $zipCode;
 
     /**
      * @ORM\Column(type="string", length=45)
+     * @Serializer\Expose
+     * @Serializer\Since("1.0")
      */
     private $email;
 
     /**
      * @ORM\Column(type="string", length=10)
+     * @Serializer\Expose
+     * @Serializer\Since("1.0")
      */
     private $phoneNumber;
 
