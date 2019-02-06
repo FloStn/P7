@@ -18,10 +18,12 @@ use JMS\Serializer\Annotation as Serializer;
  *     fields="email", 
  *     message="L'email renseigné est indisponible.", 
  * )
+ * @Serializer\ExclusionPolicy("ALL")
  * @Hateoas\Relation(
  *     "self",
  *     href = @Hateoas\Route(
- *         "user_list",
+ *         "user_details",
+ *         parameters = { "id" = "expr(object.getId())" },
  *         absolute = true
  *     )
  * )
@@ -41,12 +43,15 @@ use JMS\Serializer\Annotation as Serializer;
  *     )
  * )
  * @Hateoas\Relation(
- *     "details",
+ *     "list",
  *     href = @Hateoas\Route(
- *         "user_details",
- *         parameters = { "id" = "expr(object.getId())" },
+ *         "user_list",
  *         absolute = true
  *     )
+ * )
+ * @Hateoas\Relation(
+ *     "client",
+ *     embedded = @Hateoas\Embedded("expr(object.getClient())")
  * )
  */
 class User implements UserInterface
@@ -55,6 +60,8 @@ class User implements UserInterface
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     * @Serializer\Expose
+     * @Serializer\Since("1.0")
      */
     private $id;
 
@@ -74,23 +81,17 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Serializer\Expose
-     * @Serializer\Since("1.0")
      */
     private $password;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Client", inversedBy="users")
      * @ORM\JoinColumn(nullable=false)
-     * @Serializer\Expose
-     * @Serializer\Since("1.0")
      */
     private $client;
 
     /**
      * @ORM\Column(type="array")
-     * @Serializer\Expose
-     * @Serializer\Since("1.0")
      */
     private $roles = [];
 

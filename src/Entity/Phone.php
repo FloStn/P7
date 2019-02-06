@@ -16,6 +16,13 @@ use JMS\Serializer\Annotation as Serializer;
  *         absolute = true
  *     )
  * )
+ * @Hateoas\Relation(
+ *     "catalog",
+ *     href = @Hateoas\Route(
+ *         "phones_catalog",
+ *         absolute = true
+ *     )
+ * )
  */
 class Phone
 {
@@ -23,166 +30,144 @@ class Phone
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     * @Serializer\Since("1.0")
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=45, nullable=true)
-     * @Serializer\Expose
      * @Serializer\Since("1.0")
      */
     private $type;
 
     /**
      * @ORM\Column(type="string", length=45, nullable=true)
-     * @Serializer\Expose
      * @Serializer\Since("1.0")
      */
     private $format;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Serializer\Expose
      * @Serializer\Since("1.0")
      */
     private $integrated_components;
 
     /**
      * @ORM\Column(type="string", length=45, nullable=true)
-     * @Serializer\Expose
      * @Serializer\Since("1.0")
      */
     private $width;
 
     /**
      * @ORM\Column(type="string", length=45, nullable=true)
-     * @Serializer\Expose
      * @Serializer\Since("1.0")
      */
     private $depth;
 
     /**
      * @ORM\Column(type="string", length=45, nullable=true)
-     * @Serializer\Expose
      * @Serializer\Since("1.0")
      */
     private $height;
 
     /**
      * @ORM\Column(type="string", length=45, nullable=true)
-     * @Serializer\Expose
      * @Serializer\Since("1.0")
      */
     private $weight;
 
     /**
      * @ORM\Column(type="string", length=45, nullable=true)
-     * @Serializer\Expose
      * @Serializer\Since("1.0")
      */
     private $caseColor;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Serializer\Expose
      * @Serializer\Since("1.0")
      */
     private $caseMaterial;
 
     /**
      * @ORM\Column(type="string", length=2, nullable=true)
-     * @Serializer\Expose
      * @Serializer\Since("1.0")
      */
     private $mobileBroadbandGeneration;
 
     /**
      * @ORM\Column(type="string", length=45, nullable=true)
-     * @Serializer\Expose
      * @Serializer\Since("1.0")
      */
     private $operatingSystem;
 
     /**
      * @ORM\Column(type="string", length=45, nullable=true)
-     * @Serializer\Expose
      * @Serializer\Since("1.0")
      */
     private $simCardType;
 
     /**
      * @ORM\Column(type="string", length=10, nullable=true)
-     * @Serializer\Expose
      * @Serializer\Since("1.0")
      */
     private $clockFrequency;
 
     /**
      * @ORM\Column(type="string", length=10, nullable=true)
-     * @Serializer\Expose
      * @Serializer\Since("1.0")
      */
     private $processorCoreQty;
 
     /**
      * @ORM\Column(type="string", length=10, nullable=true)
-     * @Serializer\Expose
      * @Serializer\Since("1.0")
      */
     private $architecture;
 
     /**
      * @ORM\Column(type="string", length=10, nullable=true)
-     * @Serializer\Expose
      * @Serializer\Since("1.0")
      */
     private $ram;
 
     /**
      * @ORM\Column(type="string", length=10, nullable=true)
-     * @Serializer\Expose
      * @Serializer\Since("1.0")
      */
     private $internalMemoryCapacity;
 
     /**
      * @ORM\Column(type="string", length=10, nullable=true)
-     * @Serializer\Expose
      * @Serializer\Since("1.0")
      */
     private $userMemory;
 
     /**
      * @ORM\Column(type="string", length=15, nullable=true)
-     * @Serializer\Expose
      * @Serializer\Since("1.0")
      */
     private $frontCameraResolution;
 
     /**
      * @ORM\Column(type="string", length=15, nullable=true)
-     * @Serializer\Expose
      * @Serializer\Since("1.0")
      */
     private $backCameraResolution;
 
     /**
      * @ORM\Column(type="string", length=45, nullable=true)
-     * @Serializer\Expose
      * @Serializer\Since("1.0")
      */
     private $batteryTechnologie;
 
     /**
      * @ORM\Column(type="string", length=45, nullable=true)
-     * @Serializer\Expose
      * @Serializer\Since("1.0")
      */
     private $brand;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
-     * @Serializer\Expose
      * @Serializer\Since("1.0")
      */
     private $price;
