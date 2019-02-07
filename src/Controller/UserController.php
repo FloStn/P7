@@ -18,6 +18,8 @@ use Symfony\Component\Validator\ConstraintViolationList;
 use Symfony\Component\HttpFoundation\Request;
 use JMS\Serializer\SerializerInterface;
 use Symfony\Component\HttpFoundation\Response;
+use Nelmio\ApiDocBundle\Annotation\Model;
+use Swagger\Annotations as SWG;
 
 class UserController extends AbstractController
 {
@@ -36,6 +38,37 @@ class UserController extends AbstractController
      *     path = "/api/users",
      *     name = "user_register")
      * @ParamConverter("user", converter="fos_rest.request_body")
+     * 
+     * Allows to register a new user and link it to the customer who creates it.
+     *
+     * @SWG\Parameter(
+     *     name="Authorization",
+     *     in="header",
+     *     required=true,
+     *     type="string",
+     *     default="Bearer jwt",
+     *     description="JWT token is required."
+     * )
+     * @SWG\Parameter(
+     *     name="Content-Type",
+     *     in="header",
+     *     required=true,
+     *     type="string",
+     *     default="application/json",
+     *     description="Define the content type."
+     * )
+     * @SWG\Response(
+     *     response=201,
+     *     description="Registering the user performed successfully."
+     * )
+     * @SWG\Response(
+     *     response=400,
+     *     description="Information entered incorrect or already existing."
+     * )
+     * @SWG\Response(
+     *     response=401,
+     *     description="Invalid JWT token."
+     * )
      */
     public function register(User $user, UserPasswordEncoderInterface $encoder, ConstraintViolationList $violations)
     {
@@ -62,6 +95,28 @@ class UserController extends AbstractController
      * @Rest\Delete(
      *     path = "/api/users/{id}",
      *     name = "user_remove")
+     * 
+     * Allows to remove a user.
+     *
+     * @SWG\Parameter(
+     *     name="Authorization",
+     *     in="header",
+     *     required=true,
+     *     type="string",
+     *     description="JWT token is required."
+     * )
+     * @SWG\Response(
+     *     response=200,
+     *     description="Deleting the user performed successfully."
+     * )
+     * @SWG\Response(
+     *     response=404,
+     *     description="The desired resource does not exist or is not associated with your account."
+     * )
+     * @SWG\Response(
+     *     response=401,
+     *     description="Invalid JWT token."
+     * )
      */
     public function remove(User $user)
     {
@@ -79,8 +134,37 @@ class UserController extends AbstractController
      * @Rest\Get(
      *     path = "/api/users",
      *     name = "user_list")
-     * @QueryParam(name="page", requirements="\d+", default="1", description="Page souhaitée")
-     * @QueryParam(name="limit", requirements="\d+", default="5", description="Index de fin de la pagination")
+     * @QueryParam(name="page", requirements="\d+", default="0", description="Desired begin page.")
+     * @QueryParam(name="limit", requirements="\d+", default="5", description="Number of items desired per page.")
+     * 
+     * View a paged list of associated users with your account.
+     *
+     * @SWG\Parameter(
+     *     name="Authorization",
+     *     in="header",
+     *     required=true,
+     *     type="string",
+     *     description="JWT token is required."
+     * )
+     * @SWG\Parameter(
+     *     name="If-None-Match",
+     *     in="header",
+     *     required=true,
+     *     type="string",
+     *     description="Compare the etag given as parameter with that received and return a 304 code status response if they are identical."
+     * )
+     * @SWG\Response(
+     *     response=200,
+     *     description="Displays the list of users associated with your account."
+     * )
+     * @SWG\Response(
+     *     response=304,
+     *     description="The data is identical to that of the cache."
+     * )
+     * @SWG\Response(
+     *     response=401,
+     *     description="Invalid JWT token."
+     * )
      */
     public function list(Request $request, ParamFetcher $paramFetcher, SerializerInterface $serializer)
     {
@@ -111,6 +195,39 @@ class UserController extends AbstractController
      *     name = "user_details",
      *     requirements = {"id"="\d+"})
      * @Cache(Etag="user.getUsername() ~ user.getEmail() ~ user.getPassword()", public=true)
+     * 
+     * Allows to show the details of a defined user.
+     *
+     * @SWG\Parameter(
+     *     name="Authorization",
+     *     in="header",
+     *     required=true,
+     *     type="string",
+     *     description="JWT token is required."
+     * )
+     * @SWG\Parameter(
+     *     name="If-None-Match",
+     *     in="header",
+     *     required=true,
+     *     type="string",
+     *     description="Compare the etag given as parameter with that received and return a 304 code status response if they are identical."
+     * )
+     * @SWG\Response(
+     *     response=200,
+     *     description="Displays the defined user."
+     * )
+     * @SWG\Response(
+     *     response=404,
+     *     description="The desired resource does not exist or is not associated with your account."
+     * )
+     * * @SWG\Response(
+     *     response=304,
+     *     description="The data is identical to that of the cache."
+     * )
+     * @SWG\Response(
+     *     response=401,
+     *     description="Invalid JWT token."
+     * )
      */
     public function details(User $user)
     {
