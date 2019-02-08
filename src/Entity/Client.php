@@ -24,14 +24,7 @@ class Client
      * @Serializer\Expose
      * @Serializer\Since("1.0")
      */
-    private $firstname;
-
-    /**
-     * @ORM\Column(type="string", length=45)
-     * @Serializer\Expose
-     * @Serializer\Since("1.0")
-     */
-    private $lastname;
+    private $company;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -54,45 +47,19 @@ class Client
      */
     private $zipCode;
 
-    /**
-     * @ORM\Column(type="string", length=45)
-     * @Serializer\Expose
-     * @Serializer\Since("1.0")
-     */
-    private $email;
-
-    /**
-     * @ORM\Column(type="string", length=10)
-     * @Serializer\Expose
-     * @Serializer\Since("1.0")
-     */
-    private $phoneNumber;
-
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getFirstname(): ?string
+    public function getCompany(): ?string
     {
-        return $this->firstname;
+        return $this->company;
     }
 
-    public function setFirstname(string $firstname): self
+    public function setCompany(string $company): self
     {
-        $this->firstname = $firstname;
-
-        return $this;
-    }
-
-    public function getLastname(): ?string
-    {
-        return $this->lastname;
-    }
-
-    public function setLastname(string $lastname): self
-    {
-        $this->lastname = $lastname;
+        $this->company = $company;
 
         return $this;
     }
@@ -129,30 +96,6 @@ class Client
     public function setZipCode(string $zipCode): self
     {
         $this->zipCode = $zipCode;
-
-        return $this;
-    }
-
-    public function getEmail(): ?string
-    {
-        return $this->email;
-    }
-
-    public function setEmail(string $email): self
-    {
-        $this->email = $email;
-
-        return $this;
-    }
-
-    public function getPhoneNumber(): ?string
-    {
-        return $this->phoneNumber;
-    }
-
-    public function setPhoneNumber(string $phoneNumber): self
-    {
-        $this->phoneNumber = $phoneNumber;
 
         return $this;
     }

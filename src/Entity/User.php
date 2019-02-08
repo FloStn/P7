@@ -12,11 +12,15 @@ use JMS\Serializer\Annotation as Serializer;
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  * @UniqueEntity(
  *     fields="username", 
- *     message="Le nom d'utilisateur renseigné est indisponible.", 
+ *     message="Username already exists." 
  * )
  * @UniqueEntity(
  *     fields="email", 
- *     message="L'email renseigné est indisponible.", 
+ *     message="Email already exists."
+ * )
+ * @UniqueEntity(
+ *     fields="phone", 
+ *     message="Phone already exists."
  * )
  * @Serializer\ExclusionPolicy("ALL")
  * @Hateoas\Relation(
@@ -85,6 +89,13 @@ class User implements UserInterface
     private $password;
 
     /**
+     * @ORM\Column(type="string", length=14)
+     * @Serializer\Expose
+     * @Serializer\Since("1.0")
+     */
+    private $phone;
+
+    /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Client", inversedBy="users")
      * @ORM\JoinColumn(nullable=false)
      */
@@ -134,6 +145,18 @@ class User implements UserInterface
     public function setPassword(string $password): self
     {
         $this->password = $password;
+
+        return $this;
+    }
+
+    public function getPhone(): ?string
+    {
+        return $this->phone;
+    }
+
+    public function setPhone(string $phone): self
+    {
+        $this->phone = $phone;
 
         return $this;
     }
