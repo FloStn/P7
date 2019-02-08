@@ -12,15 +12,15 @@ use JMS\Serializer\Annotation as Serializer;
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  * @UniqueEntity(
  *     fields="username", 
- *     message="Le nom d'utilisateur renseigné est indisponible.", 
+ *     message="Username already exists." 
  * )
  * @UniqueEntity(
  *     fields="email", 
- *     message="L'email renseigné est indisponible.", 
+ *     message="Email already exists."
  * )
  * @UniqueEntity(
  *     fields="phone", 
- *     message="Le numéro de téléphone renseigné est indisponible.", 
+ *     message="Phone already exists."
  * )
  * @Serializer\ExclusionPolicy("ALL")
  * @Hateoas\Relation(
