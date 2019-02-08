@@ -38,11 +38,17 @@ class Phone
      * @ORM\Column(type="string", length=45, nullable=true)
      * @Serializer\Since("1.0")
      */
-    private $type;
+    private $model;
 
     /**
      * @ORM\Column(type="string", length=45, nullable=true)
      * @Serializer\Since("1.0")
+     */
+    private $type;
+
+    /**
+     * @ORM\Column(type="string", length=45, nullable=true)
+     * @Serializer\Since("2.0")
      */
     private $format;
 
@@ -175,6 +181,18 @@ class Phone
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function getModel(): ?string
+    {
+        return $this->model;
+    }
+
+    public function setModel(?string $model): self
+    {
+        $this->model = $model;
+
+        return $this;
     }
 
     public function getType(): ?string
