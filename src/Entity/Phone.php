@@ -42,7 +42,7 @@ class Phone
 
     /**
      * @ORM\Column(type="string", length=45, nullable=true)
-     * @Serializer\Since("1.0")
+     * @Serializer\Since("2.0")
      */
     private $format;
 
