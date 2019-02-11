@@ -1,4 +1,5 @@
-# Project 7 OpenClassrooms - Create a web service exposing an API
+# Project 7 OpenClassrooms
+## Create a web service exposing an API
 
 [![Maintainability](https://api.codeclimate.com/v1/badges/98be662baf14115d9a0d/maintainability)](https://codeclimate.com/github/FloStn/P7/maintainability)
 
