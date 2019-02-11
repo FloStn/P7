@@ -43,7 +43,7 @@ lexik_jwt_authentication:
     token_ttl:        3600
 ```
 
-For more information about the JWT bundle, please refer here [here](https://github.com/lexik/LexikJWTAuthenticationBundle/tree/8c897a098280547871be35954d1d7006a3711d30).
+For more information about the JWT bundle, please refer [here](https://github.com/lexik/LexikJWTAuthenticationBundle/tree/8c897a098280547871be35954d1d7006a3711d30).
 
 ## Load data fixtures (optional)
 
