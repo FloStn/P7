@@ -1,0 +1,229 @@
+App\Entity\Phone:
+    phone0:
+        model: Samsung Galaxy S7
+        type: Smartphone
+        format: Tactile
+        integratedComponents: Caméra arrière, caméra avant, lecteur audio, enregistreur vocal, capteur de fréquence cardiaque, navigation
+        width: 69.6 mm
+        depth: 7.9 mm
+        height: 142.4 mm
+        weight: 152 g
+        caseColor: Noir
+        caseMaterial: Métal, verre
+        mobileBroadbandGeneration: 4G
+        operatingSystem: Android 6.0
+        simCardType: Nano SIM
+        clockFrequency: 2.3 GHz
+        processorCoreQty: 8 cœurs
+        architecture: 64 bits
+        ram: 4 Go
+        internalMemoryCapacity: 32 GO
+        userMemory: 24.5 Go
+        frontCameraResolution: 5 mégapixels
+        backCameraResolution: 12 mégapixels
+        batteryTechnologie: Lithium Ion
+        brand: Samsung
+        price: 235
+    phone1:
+        model: Apple Iphone X
+        type: Smartphone
+        format: Tactile
+        integratedComponents: Enregistreur vocal, haut-parleurs stéréo, navigation, double caméra orientée vers l'arrière, caméra vers l'avant double, lecteur numérique
+        width: 70.9 mm
+        depth: 7.7 mm
+        height: 143.6 mm
+        weight: 174 g
+        caseColor: Gris
+        caseMaterial: Verre, revêtement oléophobe, acier inoxydable de niveau chirurgical
+        mobileBroadbandGeneration: 4G
+        operatingSystem: iOS 11
+        simCardType: Nano SIM
+        architecture: 64 bits
+        internalMemoryCapacity: '64 GO'
+        frontCameraResolution: 7 mégapixels
+        backCameraResolution: 12 mégapixels
+        batteryTechnologie: Lithium Ion
+        brand: Apple
+        price: 783
+    phone2:
+        model: Huawei P20 Pro
+        type: Smartphone
+        format: Tactile
+        integratedComponents: Caméra avant, enregistreur vocal, navigation, lecteur numérique, triple caméra orientée vers l'arrière
+        width: 73.9 mm
+        depth: 7.8 mm
+        height: 155 mm
+        weight: 180 g
+        caseColor: Crépuscule
+        caseMaterial: Verre 3D
+        mobileBroadbandGeneration: 4G
+        operatingSystem: Android 8.1
+        simCardType: Nano SIM
+        clockFrequency: 2.36 GHz
+        processorCoreQty: 8 cœurs
+        architecture: 64 bits
+        ram: 6 Go
+        internalMemoryCapacity: 128 Go
+        frontCameraResolution: 24 mégapixels
+        backCameraResolution: 40 mégapixels
+        batteryTechnologie: Lithium-polymère
+        brand: Huawei
+        price: 530
+    phone3:
+        model: Honor 8X
+        type: Smartphone
+        format: Tactile
+        integratedComponents: Caméra avant, enregistreur vocal, navigation, double caméra orientée vers l'arrière, lecteur numérique
+        width: 76.6 mm
+        depth: 7.8 mm
+        height: 160.4 mm
+        weight: 175 g
+        caseColor: Noir
+        caseMaterial: Verre
+        mobileBroadbandGeneration: 4G
+        operatingSystem: Android 8.1
+        simCardType: Nano SIM
+        clockFrequency: 2.2 GHz
+        processorCoreQty: 8 cœurs
+        architecture: 64 bits
+        ram: 4 Go
+        internalMemoryCapacity: 128 Go
+        frontCameraResolution: 16 mégapixels
+        backCameraResolution: 20 mégapixels
+        brand: Huawei
+        price: 232
+    phone4:
+        model: Sony XPERIA XZ2 Compact
+        type: Smartphone
+        format: Tactile
+        integratedComponents: Caméra arrière, caméra avant, enregistreur vocal, haut-parleurs stéréo, navigation, lecteur numérique
+        width: 65 mm
+        depth: 12.1 mm
+        height: 135 mm
+        weight: 168 g
+        caseColor: Noir
+        caseMaterial: Plastique, aluminium, verre
+        mobileBroadbandGeneration: 4G
+        operatingSystem: Android 8.0
+        simCardType: Nano SIM
+        processorCoreQty: 8 cœurs
+        architecture: 64 bits
+        ram: 4 Go
+        internalMemoryCapacity: 64 Go
+        frontCameraResolution: 5 mégapixels
+        backCameraResolution: 19 mégapixels
+        brand: Sony
+        price: 426
+    phone5:
+        model: LG G7 ThinQ
+        type: Smartphone
+        format: Tactile
+        integratedComponents: Caméra avant, radio FM, enregistreur vocal, haut-parleurs stéréo, navigation, double caméra orientée vers l'arrière, lecteur numérique
+        width: 71.9 mm
+        depth: 7.9 mm
+        height: 153.2 mm
+        weight: 162 g
+        caseColor: Nouveau gris platine
+        mobileBroadbandGeneration: 4G
+        operatingSystem: Android 8.0
+        simCardType: Nano SIM
+        clockFrequency: 2.8 GHz
+        processorCoreQty: 8 cœurs
+        architecture: 64 bits
+        ram: 4 GO
+        internalMemoryCapacity: 64 Go
+        frontCameraResolution: 8 mégapixels
+        backCameraResolution: 16 mégapixels
+        batteryTechnologie: Lithium Ion
+        brand: LG
+        price: 363
+    phone6:
+        model: OnePlus 6T
+        type: Smartphone
+        format: Tactile
+        integratedComponents: Caméra avant, lecteur audio, enregistreur vocal, navigation, double caméra orientée vers l'arrière
+        width: 74.8 mm
+        depth: 8.2 mm
+        height: 157.5 mm
+        weight: 185 g
+        caseColor: Noir miroir
+        caseMaterial: Verre
+        mobileBroadbandGeneration: 4G
+        operatingSystem: OxygenOS
+        simCardType: Nano SIM
+        clockFrequency: 2.8 GHz
+        processorCoreQty: 8 cœurs
+        architecture: 64 bits
+        ram: 6 Go
+        internalMemoryCapacity: 128 Go
+        frontCameraResolution: 16 mégapixels
+        backCameraResolution: 16 mégapixels
+        brand: OnePlus
+        price: 495
+    phone7:
+        model: Samsung Galaxy S9
+        type: Smartphone
+        format: Tactile
+        integratedComponents: Caméra arrière, caméra avant, enregistreur vocal, haut-parleurs stéréo, navigation, lecteur numérique
+        width: 68.7 mm
+        depth: 8.5 mm
+        height: 147.7 mm
+        weight: 163 g
+        caseColor: Noir minuit
+        caseMaterial: Cadre en métal
+        mobileBroadbandGeneration: 4G
+        operatingSystem: Android 8.0
+        simCardType: Nano SIM
+        clockFrequency: 2.7 GHz
+        processorCoreQty: 8 cœurs
+        architecture: 64 bits
+        ram: 4 Go
+        internalMemoryCapacity: 64 Go
+        userMemory: 50.3 Go
+        frontCameraResolution: 8 mégapixels
+        backCameraResolution: 12 mégapixels
+        brand: Samsung
+        price: 465
+    phone8:
+        model: Xiaomi Redmi Note 6 Pro
+        type: Smartphone
+        format: Tactile
+        integratedComponents: Enregistreur vocal, navigation, double caméra orientée vers l'arrière, caméra vers l'avant double, lecteur numérique
+        width: 76.4 mm
+        depth: 8.26 mm
+        height: 157.9 mm
+        weight: 182 g
+        caseColor: Noir
+        mobileBroadbandGeneration: 4G
+        operatingSystem: Android 7.1.2
+        simCardType: Nano SIM
+        clockFrequency: 2 GHz
+        processorCoreQty: 8 cœurs
+        architecture: 64 bits
+        ram: 4 Go
+        internalMemoryCapacity: 64 Go
+        frontCameraResolution: 20 mégapixels
+        backCameraResolution: 12 mégapixels
+        brand: Xiaomi
+        price: 185
+    phone9:
+        model: Apple iPhone Xr
+        type: Smartphone
+        format: Tactile
+        integratedComponents: Caméra arrière, caméra avant, enregistreur vocal, haut-parleurs stéréo, navigation, lecteur numérique
+        width: 75.7 mm
+        depth: 8.3 mm
+        height: 150.9 mm
+        weight: 194 g
+        caseColor: Rouge mat
+        mobileBroadbandGeneration: 4G
+        operatingSystem: iOS 12
+        simCardType: Nano SIM, Carte SIM électronique (e-SIM)
+        processorCoreQty: 6 cœurs
+        architecture: 64 bits
+        internalMemoryCapacity: 64 Go
+        frontCameraResolution: 7 mégapixels
+        backCameraResolution: 12 mégapixels
+        batteryTechnologie: Lithium Ion
+        brand: Apple
+        price: 742

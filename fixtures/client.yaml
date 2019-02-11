@@ -1,0 +1,26 @@
+App\Entity\Client:
+    client0:
+        company: 'ABC Markets'
+        address: '26, Avenue des Pres'
+        city: 'MONTIGNY-LE-BRETONNEUX'
+        zipCode: '78180'
+    client1:
+        company: 'Netstars'
+        address: '77, rue de Lille'
+        city: 'AUBAGNE'
+        zipCode: '13400'
+    client2:
+        company: 'Allied City Stores'
+        address: '77, avenue Jules Ferry'
+        city: 'SOISSONS'
+        zipCode: '02200'
+    client3:
+        company: 'DGS VolMAX'
+        address: '59, rue Lenotre'
+        city: 'RENNES'
+        zipCode: '35000'
+    client4:
+        company: 'STM'
+        address: '43, rue de la Boétie'
+        city: 'POINTE-À-PITRE'
+        zipCode: '97110'

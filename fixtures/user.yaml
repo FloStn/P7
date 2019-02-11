@@ -1,0 +1,71 @@
+App\Entity\User:
+    user0:
+        username: Superprood86
+        email: GanoAuberjonois@dayrep.com
+        password: <password()>
+        roles: [ROLE_CLIENT]
+        phone: 03.58.87.30.66
+        client: '@client0'
+    user1:
+        username: Haturnmay
+        email: RoyceRichard@dayrep.com
+        password: <password()>
+        roles: [ROLE_USER]
+        phone: 04.27.27.80.93
+        client: '@client0'
+    user2:
+        username: Nouranglithe
+        email: RayPetrie@dayrep.com
+        password: <password()>
+        roles: [ROLE_CLIENT]
+        phone: 03.46.67.45.11
+        client: '@client1'
+    user3:
+        username: Plimparthid
+        email: ViolletteLampron@dayrep.com
+        password: <password()>
+        roles: [ROLE_USER]
+        phone: 01.26.57.22.07
+        client: '@client1'
+    user4:
+        username: Saitter
+        email: AugusteDurand@dayrep.com
+        password: <password()>
+        roles: [ROLE_CLIENT]
+        phone: 01.60.45.57.98
+        client: '@client2'
+    user5:
+        username: Tatied1933
+        email: FanetteVadeboncoeur@teleworm.us
+        password: <password()>
+        roles: [ROLE_USER]
+        phone: 01.14.00.31.70
+        client: '@client2'
+    user6:
+        username: Goor1939
+        email: PaulBoule@dayrep.com
+        password: <password()>
+        roles: [ROLE_CLIENT]
+        phone: 05.41.30.23.28
+        client: '@client3'
+    user7:
+        username: Wene1996
+        email: VardenDostie@teleworm.us
+        password: <password()>
+        roles: [ROLE_USER]
+        phone: 02.46.97.48.27
+        client: '@client3'
+    user8:
+        username: Whes1981
+        email: WilliamVeilleux@rhyta.com
+        password: <password()>
+        roles: [ROLE_CLIENT]
+        phone: 04.66.74.38.80
+        client: '@client4'
+    user9:
+        username: Fesed1988
+        email: OrielLabrie@dayrep.com
+        password: <password()>
+        roles: [ROLE_USER]
+        phone: 01.03.26.11.30
+        client: '@client4'
