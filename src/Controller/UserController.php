@@ -57,6 +57,34 @@ class UserController extends AbstractController
      *     default="application/json",
      *     description="Define the content type."
      * )
+     * @SWG\Parameter(
+     *     name="username",
+     *     in="body",
+     *     description="Username",
+     *     required=true,
+     *     @SWG\Schema(type="string")
+     * )
+     * @SWG\Parameter(
+     *     name="email",
+     *     in="body",
+     *     description="Email",
+     *     required=true,
+     *     @SWG\Schema(type="string")
+     * )
+     * @SWG\Parameter(
+     *     name="password",
+     *     in="body",
+     *     description="Password",
+     *     required=true,
+     *     @SWG\Schema(type="string")
+     * )
+     * @SWG\Parameter(
+     *     name="phone",
+     *     in="body",
+     *     description="Phone number",
+     *     required=true,
+     *     @SWG\Schema(type="string")
+     * )
      * @SWG\Response(
      *     response=201,
      *     description="Registering the user performed successfully."
