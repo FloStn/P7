@@ -171,7 +171,7 @@ class UserController extends AbstractController
         $page = $paramFetcher->get('page');
         $limit = $paramFetcher->get('limit');
         $users_list = array();
-        $client = $this->getUser();
+        $client = $this->getUser()->getClient();
         $query = $this->repository->getPagination($client, $page, $limit);
 
         foreach($query as $row)
