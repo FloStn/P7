@@ -18,7 +18,6 @@ use Symfony\Component\Validator\ConstraintViolationList;
 use Symfony\Component\HttpFoundation\Request;
 use JMS\Serializer\SerializerInterface;
 use Symfony\Component\HttpFoundation\Response;
-use Nelmio\ApiDocBundle\Annotation\Model;
 use Swagger\Annotations as SWG;
 
 class UserController extends AbstractController
@@ -38,7 +37,7 @@ class UserController extends AbstractController
      *     path = "/api/users",
      *     name = "user_register")
      * @ParamConverter("user", converter="fos_rest.request_body")
-     * 
+     *
      * Allows to register a new user and link it to the customer who creates it.
      *
      * @SWG\Parameter(
@@ -46,7 +45,6 @@ class UserController extends AbstractController
      *     in="header",
      *     required=true,
      *     type="string",
-     *     default="Bearer jwt",
      *     description="JWT token is required."
      * )
      * @SWG\Parameter(
@@ -100,11 +98,9 @@ class UserController extends AbstractController
      */
     public function register(User $user, UserPasswordEncoderInterface $encoder, ConstraintViolationList $violations)
     {
-        if (count($violations))
-        {
-            foreach ($violations as $violation)
-            {
-                $message = sprintf("%s", $violation->getMessage());
+        if (count($violations)) {
+            foreach ($violations as $violation) {
+                $message = sprintf('%s', $violation->getMessage());
             }
             throw new ResourceValidationException($message);
         }
@@ -113,7 +109,7 @@ class UserController extends AbstractController
         $passwordEncoder = $encoder->encodePassword($user, $user->getPassword());
         $user->setPassword($passwordEncoder);
         $user->setRoles(['ROLE_USER']);
-        
+
         $this->em->persist($user);
         $this->em->flush();
     }
@@ -123,7 +119,7 @@ class UserController extends AbstractController
      * @Rest\Delete(
      *     path = "/api/users/{id}",
      *     name = "user_remove")
-     * 
+     *
      * Allows to remove a user.
      *
      * @SWG\Parameter(
@@ -148,8 +144,7 @@ class UserController extends AbstractController
      */
     public function remove(User $user)
     {
-        if ($this->getUser()->getClient() != $user->getClient())
-        {
+        if ($this->getUser()->getClient() != $user->getClient()) {
             $message = "L'utilisateur renseigné n'est pas associé à votre compte.";
             throw new ResourceNoAssociatedException($message);
         }
@@ -164,7 +159,7 @@ class UserController extends AbstractController
      *     name = "user_list")
      * @QueryParam(name="page", requirements="\d+", default="0", description="Desired begin page.")
      * @QueryParam(name="limit", requirements="\d+", default="5", description="Number of items desired per page.")
-     * 
+     *
      * View a paged list of associated users with your account.
      *
      * @SWG\Parameter(
@@ -198,12 +193,11 @@ class UserController extends AbstractController
     {
         $page = $paramFetcher->get('page');
         $limit = $paramFetcher->get('limit');
-        $users_list = array();
+        $users_list = [];
         $client = $this->getUser()->getClient();
         $query = $this->repository->getPagination($client, $page, $limit);
 
-        foreach($query as $row)
-        {
+        foreach ($query as $row) {
             array_push($users_list, $row);
         }
 
@@ -223,7 +217,7 @@ class UserController extends AbstractController
      *     name = "user_details",
      *     requirements = {"id"="\d+"})
      * @Cache(Etag="user.getUsername() ~ user.getEmail() ~ user.getPassword()", public=true)
-     * 
+     *
      * Allows to show the details of a defined user.
      *
      * @SWG\Parameter(
@@ -259,12 +253,11 @@ class UserController extends AbstractController
      */
     public function details(User $user)
     {
-        if ($user === null || $this->getUser()->getClient() != $user->getClient())
-        {
+        if (null === $user || $this->getUser()->getClient() != $user->getClient()) {
             $message = "L'utilisateur renseigné n'existe pas ou n'est pas associé à votre compte.";
             throw new ResourceNoAssociatedException($message);
         }
-        
+
         return $user;
     }
 }

@@ -13,7 +13,6 @@ use App\Exception\ResourceDoesNotExistException;
 use Symfony\Component\HttpFoundation\Request;
 use JMS\Serializer\SerializerInterface;
 use Symfony\Component\HttpFoundation\Response;
-use Nelmio\ApiDocBundle\Annotation\Model;
 use Swagger\Annotations as SWG;
 
 class PhoneController extends AbstractController
@@ -32,7 +31,7 @@ class PhoneController extends AbstractController
      *     name = "phones_catalog")
      * @QueryParam(name="page", requirements="\d+", default="0", description="Desired begin page.")
      * @QueryParam(name="limit", requirements="\d+", default="5", description="Number of items desired per page.")
-     * 
+     *
      * View a paged list of phones.
      *
      * @SWG\Parameter(
@@ -66,11 +65,10 @@ class PhoneController extends AbstractController
     {
         $page = $paramFetcher->get('page');
         $limit = $paramFetcher->get('limit');
-        $phones_list = array();
+        $phones_list = [];
         $query = $this->repository->getPagination($page, $limit);
 
-        foreach($query as $row)
-        {
+        foreach ($query as $row) {
             array_push($phones_list, $row);
         }
 
@@ -90,7 +88,7 @@ class PhoneController extends AbstractController
      *     name = "phone_details",
      *     requirements = {"id"="\d+"})
      * @Cache(Etag="phone.getType() ~ phone.getFormat() ~ phone.getIntegratedComponents() ~ phone.getWidth() ~ phone.getDepth() ~ phone.getHeight() ~ phone.getWeight() ~ phone.getCaseColor() ~ phone.getCaseMaterial() ~ phone.getMobileBroadbandGeneration() ~ phone.getOperatingSystem() ~ phone.getSimCardType() ~ phone.getClockFrequency() ~ phone.getProcessorCoreQty() ~ phone.getArchitecture() ~ phone.getRam() ~ phone.getInternalMemoryCapacity() ~ phone.getUserMemory() ~ phone.getFrontCameraResolution() ~ phone.getBackCameraResolution() ~ phone.getBatteryTechnologie() ~ phone.getBrand() ~ phone.getPrice()", public=true)
-     * 
+     *
      * Allows to show the details of a defined phone.
      *
      * @SWG\Parameter(
@@ -126,8 +124,7 @@ class PhoneController extends AbstractController
      */
     public function details(Phone $phone)
     {
-        if ($phone === null)
-        {
+        if (null === $phone) {
             $message = "Ce téléphone n'existe pas.";
             throw new ResourceDoesNotExistException($message);
         }
